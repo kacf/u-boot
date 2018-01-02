@@ -69,7 +69,7 @@ checkgcc6:
 	@if test "$(call cc-name)" = "gcc" -a \
 			"$(call cc-version)" -lt "0600"; then \
 		echo '*** Your GCC is older than 6.0 and is not supported'; \
-		false; \
+		true; \
 	fi
 
 
@@ -170,6 +170,12 @@ ifneq ($(CONFIG_VF610),)
 ALL-y += u-boot.vyb
 endif
 endif
+
+cmd_u-boot__ = $(LD) $(LDFLAGS) $(LDFLAGS_u-boot) -o $@ \
+      -T arch/arm/lib/$(EFI_LDS) $(u-boot-init)                             \
+      --start-group $(u-boot-main) --end-group                 \
+      $(PLATFORM_LIBS) -Map u-boot.map;                        \
+      $(if $(ARCH_POSTLINK), $(MAKE) -f $(ARCH_POSTLINK) $@, true)
 
 EFI_LDS := elf_arm_efi.lds
 EFI_CRT0 := crt0_arm_efi.o

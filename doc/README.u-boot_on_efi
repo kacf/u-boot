@@ -244,6 +244,9 @@ arch/x86/lib/efi
 arch/x86/cpu/efi
 	x86 support code for running as an EFI application
 
+board/efi/efi-arm/efi.c
+	ARM board code for running as an EFI application
+
 board/efi/efi-x86/efi.c
 	x86 board code for running as an EFI application
 

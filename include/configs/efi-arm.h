@@ -1,0 +1,24 @@
+/*
+ * Copyright (c) 2015 Google, Inc
+ *
+ * SPDX-License-Identifier:	GPL-2.0+
+ */
+
+#ifndef __CONFIG_H
+#define __CONFIG_H
+
+#undef CONFIG_TPM_TIS_BASE_ADDRESS
+
+#undef CONFIG_SCSI_AHCI
+
+#define CONFIG_NR_DRAM_BANKS 1
+#define CONFIG_SYS_MALLOC_LEN 0x200000
+
+#define CONFIG_SYS_LOAD_ADDR 0x60020000
+#define CONFIG_SPL_TEXT_BASE 0x60020000
+#define CONFIG_SYS_INIT_SP_ADDR 0x60020000
+
+/* TODO REMOVE!!! */
+#define CONFIG_SYS_MMC_ENV_DEV 0
+
+#endif

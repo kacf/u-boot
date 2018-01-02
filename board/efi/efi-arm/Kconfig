@@ -1,7 +1,7 @@
-if TARGET_EFI && X86
+if TARGET_EFI && ARM
 
 config SYS_BOARD
-	default "efi-x86"
+	default "efi-arm"
 
 config SYS_VENDOR
 	default "efi"
@@ -10,6 +10,6 @@ config SYS_SOC
 	default "efi"
 
 config SYS_CONFIG_NAME
-	default "efi-x86"
+	default "efi-arm"
 
 endif

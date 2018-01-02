@@ -43,15 +43,15 @@ static efi_status_t setup_memory(struct efi_priv *priv)
 	 * are very few assignments to global_data in U-Boot and this makes
 	 * it easier to find them.
 	 */
-	global_data_ptr = efi_malloc(priv, sizeof(struct global_data), &ret);
-	if (!global_data_ptr)
+	gd = efi_malloc(priv, sizeof(struct global_data), &ret);
+	if (!gd)
 		return ret;
 	memset(gd, '\0', sizeof(*gd));
 
-	gd->malloc_base = (ulong)efi_malloc(priv, CONFIG_VAL(SYS_MALLOC_F_LEN),
-					    &ret);
-	if (!gd->malloc_base)
-		return ret;
+	/* gd->malloc_base = (ulong)efi_malloc(priv, CONFIG_VAL(SYS_MALLOC_F_LEN), */
+	/* 				    &ret); */
+	/* if (!gd->malloc_base) */
+	/* 	return ret; */
 	pages = CONFIG_EFI_RAM_SIZE >> 12;
 
 	/*
@@ -85,9 +85,9 @@ static void free_memory(struct efi_priv *priv)
 	else
 		boot->free_pages(priv->ram_base, gd->ram_size >> 12);
 
-	efi_free(priv, (void *)gd->malloc_base);
+	/* efi_free(priv, (void *)gd->malloc_base); */
 	efi_free(priv, gd);
-	global_data_ptr = NULL;
+	gd = NULL;
 }
 
 /**

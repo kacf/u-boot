@@ -337,7 +337,20 @@ config ARM64_SUPPORT_AARCH32
 	  This ARM64 system supports AArch32 execution state.
 
 choice
+	prompt "Mainboard vendor"
+	default VENDOR_UNSPECIFIED
+
+config VENDOR_EFI
+	bool "efi"
+
+config VENDOR_UNSPECIFIED
+	bool "Unspecified"
+
+endchoice
+
+choice
 	prompt "Target select"
+        depends on VENDOR_UNSPECIFIED
 	default TARGET_HIKEY
 
 config ARCH_AT91
@@ -1293,6 +1306,7 @@ source "board/broadcom/bcmns2/Kconfig"
 source "board/cavium/thunderx/Kconfig"
 source "board/cirrus/edb93xx/Kconfig"
 source "board/eets/pdu001/Kconfig"
+source "board/efi/Kconfig"
 source "board/freescale/ls2080a/Kconfig"
 source "board/freescale/ls2080aqds/Kconfig"
 source "board/freescale/ls2080ardb/Kconfig"

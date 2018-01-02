@@ -142,11 +142,13 @@ static int display_text_info(void)
 	return 0;
 }
 
+#if !defined(CONFIG_EFI)
 static int announce_dram_init(void)
 {
 	puts("DRAM:  ");
 	return 0;
 }
+#endif
 
 static int show_dram_config(void)
 {
@@ -813,8 +815,10 @@ static const init_fnc_t init_sequence_f[] = {
 #if defined(CONFIG_HARD_SPI)
 	init_func_spi,
 #endif
+#if !defined(CONFIG_EFI)
 	announce_dram_init,
 	dram_init,		/* configure available RAM banks */
+#endif
 #ifdef CONFIG_POST
 	post_init_f,
 #endif

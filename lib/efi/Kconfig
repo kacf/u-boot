@@ -1,6 +1,5 @@
 config EFI
 	bool "Support running U-Boot from EFI"
-	depends on X86
 	help
 	  U-Boot can be started from EFI on certain platforms. This allows
 	  EFI to perform most of the system init and then jump to U-Boot for
@@ -9,7 +8,7 @@ config EFI
 
 choice
 	prompt "Select EFI mode to use"
-	depends on X86 && EFI
+	depends on EFI
 
 config EFI_APP
 	bool "Support running as an EFI application"

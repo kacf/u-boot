@@ -486,4 +486,15 @@ config ENV_SIZE
 
 endif
 
+if TARGET_EFI
+
+config ENV_SIZE
+	hex "Environment Size"
+	depends on !ENV_IS_NOWHERE
+	default 0x20000
+	help
+	  Size of the environment storage area
+
+endif
+
 endmenu

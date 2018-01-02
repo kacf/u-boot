@@ -1,0 +1,6 @@
+EFI-ARM BOARD
+M:	Simon Glass <sjg@chromium.org>
+S:	Maintained
+F:	board/efi/efi-arm/
+F:	include/configs/efi-arm.h
+F:	configs/efi-arm_defconfig

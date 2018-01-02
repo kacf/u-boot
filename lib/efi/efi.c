@@ -71,9 +71,17 @@ int efi_init(struct efi_priv *priv, const char *banner, efi_handle_t image,
 	efi_puts(priv, banner);
 	efi_putc(priv, ' ');
 
+        char msg[100];
+        snprintf(msg, sizeof(msg), "In %s at %i, boot = %d\n", __func__, __LINE__, (unsigned)boot);
+        efi_puts(priv, msg);
+        snprintf(msg, sizeof(msg), "In %s at %i, boot->open_protocol = %d\n", __func__, __LINE__, (unsigned)boot->open_protocol);
+        efi_puts(priv, msg);
+
 	ret = boot->open_protocol(priv->parent_image, &loaded_image_guid,
 				  (void **)&loaded_image, &priv->parent_image,
 				  NULL, EFI_OPEN_PROTOCOL_GET_PROTOCOL);
+        snprintf(msg, sizeof(msg), "In %s at %i, boot->open_protocol = %d\n", __func__, __LINE__, (unsigned)boot->open_protocol);
+        efi_puts(priv, msg);
 	if (ret) {
 		efi_puts(priv, "Failed to get loaded image protocol\n");
 		return ret;
